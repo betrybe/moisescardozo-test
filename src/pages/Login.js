@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import FormLogin from '../components/common/Forms/login';
+import Box from '../components/layout/Box';
 
 class Login extends React.Component {
   render() {
-    return <Link to="/wallet">Login</Link>;
+    return (
+      <Box styleProp="LoginContainer">
+        <FormLogin />
+      </Box>
+    );
   }
 }
 

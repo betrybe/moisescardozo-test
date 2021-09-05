@@ -1,0 +1,19 @@
+.LoginBackground{
+    border: solid 1px;
+    border-radius: 8px;
+    display: flex;
+    /* flex:1; */
+    flex-direction: column;
+    align-items: center;
+    line-height: 2;
+}
+.LoginWith{
+    width: 25%;
+    margin:auto;
+}
+.LoginContainer{
+    display: flex;
+    /* background-color: rgba(0,0,0,0.1); */
+    height: 100vh;
+}
+
