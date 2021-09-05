@@ -21,7 +21,10 @@
     border-radius: 8px;
     text-align: center;
 }
-
 .imgLogin{
     margin: 50px;
+}
+
+.formWallet{
+    background-color: #000000;
 }

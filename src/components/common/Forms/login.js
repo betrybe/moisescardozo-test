@@ -45,7 +45,7 @@ export default function FormLogin() {
             onChange={ hadleChange }
           />
         </label>
-        <Button className="button">
+        <Button styleProp="button">
           <Link
             className={ `buttonLink ${isEmpy ? 'disable' : 'enable'}` }
             to={ isEmpy ? '/' : '/wallet' }
