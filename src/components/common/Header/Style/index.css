@@ -2,13 +2,18 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    max-width: 100%;
+
+}
+.headerImgContainer{
+    width: 75%;
 }
 .headerImg{
     height: 50px;
 }
 .headerUser{
     display: flex;
-    width: 20%;
+    width: 25%;
     flex-wrap: wrap;
     justify-content: space-between;
     font-size: 1.2rem;
