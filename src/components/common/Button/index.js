@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Style/index.css';
 
-export default function Button({ children, styleProp }) {
+export default function Button({ children, styleButtonProp }) {
   return (
-    <button type="button" className={ styleProp }>
+    <button type="button" className={ styleButtonProp }>
       {children}
     </button>
   );
 }
 Button.defaultProps = {
-  styleProp: undefined,
+  styleButtonProp: undefined,
 };
 
 Button.propTypes = {
-  styleProp: PropTypes.string,
+  styleButtonProp: PropTypes.string,
   children: PropTypes.node.isRequired,
 };

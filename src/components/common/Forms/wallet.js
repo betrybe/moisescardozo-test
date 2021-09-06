@@ -2,24 +2,25 @@ import React from 'react';
 import Box from '../../layout/Box';
 import Button from '../Button';
 import './Style/index.css';
+import './Style/inputSize.css';
 
 export default function FormWallet() {
   return (
     <Box styleProp="formWallet">
-      <form className="">
-        <label className="" htmlFor="valor">
+      <form className="formWallet__Menu">
+        <label className="formWallet__Label  col-1" htmlFor="valor">
           Valor:
           <input
-            className=""
+            className="formWallet__Input"
             type="numeric"
             name="valor"
             id="valor"
           />
         </label>
-        <label className="" htmlFor="moeda">
+        <label className="formWallet__Label col-1" htmlFor="moeda">
           Moeda:
           <select
-            className=""
+            className="formWallet__Input formSelect"
             name="moeda"
             id="moeda"
           >
@@ -30,10 +31,10 @@ export default function FormWallet() {
 
           </select>
         </label>
-        <label className="" htmlFor="pagamento">
+        <label className="formWallet__Label col-3" htmlFor="pagamento">
           Método de pagamento:
           <select
-            className=""
+            className="formWallet__Input formSelect fild_md"
             name="pagamento"
             id="pagamento"
           >
@@ -42,10 +43,10 @@ export default function FormWallet() {
             <option value="Debito">Cartão de debito</option>
           </select>
         </label>
-        <label className="" htmlFor="tag">
+        <label className="formWallet__Label col-1" htmlFor="tag">
           Tag:
           <select
-            className=""
+            className="formWallet__Input formSelect fild_md"
             name="tag"
             id="tag"
           >
@@ -56,18 +57,20 @@ export default function FormWallet() {
             <option value="Saude">Saúde</option>
           </select>
         </label>
-        <label className="" htmlFor="descricao">
+        <label className="formWallet__Label col-2" htmlFor="descricao">
           Descrição:
           <input
-            className=""
+            className="formWallet__Input fild_lg"
             type="text"
             name="descricao"
             id="descricao"
           />
         </label>
-        <Button>
-          Adicionar despesas
-        </Button>
+        <Box styleProp="formWalletContainer__Button col-1">
+          <Button styleButtonProp="formWalletButton">
+            Adicionar despesas
+          </Button>
+        </Box>
       </form>
     </Box>
   );

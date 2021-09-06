@@ -24,7 +24,48 @@
 .imgLogin{
     margin: 50px;
 }
-
+/* WALLET STYLES */
 .formWallet{
-    background-color: #000000;
+    background-color: rgba(0,0,0,0.8);
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+.formWallet__Menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    color:#FFF;
+    font-size: 20px;
+}
+.formWallet__Label{
+    /* width: 10%; */
+}
+.formWallet__Input{
+    position: relative;
+    width: 50%;
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+.formSelect{
+    padding: 8px;
+    font-size: 20px;
+}
+.formWalletButton{
+    position: relative;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #FFF;
+    border:none;
+    padding: 15px;
+    border-radius: 8px;
+    background-color:#54aeff;
+}
+.formWalletContainer__Button{
+    position: relative;
+    height: auto;
 }
