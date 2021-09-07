@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '../../layout/Box';
 
 const tableHeader = [
   'Descrição',
@@ -25,28 +26,29 @@ const tableValue = [
 
 export default function TableWallet() {
   return (
-    <table>
-      <tr>
-        {tableHeader.map((texto) => (
-          <th key={ texto }>{texto}</th>
-        ))}
-      </tr>
-      {tableValue.map((item) => (
-        <tr key={ item.desc }>
-          <td>{item.desc}</td>
-          <td>{item.tag}</td>
-          <td>{item.pag}</td>
-          <td>{item.valor}</td>
-          <td>{item.coin}</td>
-          <td>{item.cambio}</td>
-          <td>{item.convertido}</td>
-          <td>{item.moedaExt}</td>
-          <td>
-            update /delete
-          </td>
+    <Box>
+      <table>
+        <tr>
+          {tableHeader.map((texto) => (
+            <th key={ texto }>{texto}</th>
+          ))}
         </tr>
-      ))}
-    </table>
-
+        {tableValue.map((item) => (
+          <tr key={ item.desc }>
+            <td>{item.desc}</td>
+            <td>{item.tag}</td>
+            <td>{item.pag}</td>
+            <td>{item.valor}</td>
+            <td>{item.coin}</td>
+            <td>{item.cambio}</td>
+            <td>{item.convertido}</td>
+            <td>{item.moedaExt}</td>
+            <td>
+              update /delete
+            </td>
+          </tr>
+        ))}
+      </table>
+    </Box>
   );
 }

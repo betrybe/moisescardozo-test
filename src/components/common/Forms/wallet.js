@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '../../layout/Box';
 import Button from '../Button';
-import TableWallet from '../Table';
 import './Style/index.css';
 import './Style/inputSize.css';
 
 export default function FormWallet() {
+  const [name, setName] = useState([]);
+  const [loadCoin, setLoadCoin] = useState('https://economia.awesomeapi.com.br/json/all');
+
+  const getAllCoins = async () => {
+    const res = await fetch(loadCoin);
+    const data = await res.json();
+    const names = Object.getOwnPropertyNames(data);
+    setName(names);
+  };
+
+  useEffect(() => {
+    getAllCoins();
+  }, []);
+
   return (
     <Box styleProp="formWallet">
       <form className="formWallet__Menu">
@@ -25,10 +38,13 @@ export default function FormWallet() {
             name="moeda"
             id="moeda"
           >
-            <option value="USD">USD</option>
+            {name.map((nameOpt) => (
+              <option key={ nameOpt } value={ nameOpt }>{nameOpt}</option>
+            ))}
+            {/* <option value="USD">USD</option>
             <option value="BRL">BRL</option>
             <option value="CAD">CAD</option>
-            <option value="UER">UER</option>
+            <option value="UER">UER</option> */}
 
           </select>
         </label>
@@ -73,7 +89,6 @@ export default function FormWallet() {
           </Button>
         </Box>
       </form>
-      <TableWallet />
     </Box>
   );
 }
