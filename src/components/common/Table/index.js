@@ -23,7 +23,11 @@ const tableValue = [
     moedaExt: '2',
     upDel: '2' },
 ];
-
+const DumbData = [{ descricao: '11',
+  moeda: 'GBP',
+  pagamento: 'Debito',
+  tag: 'Alimentaçao',
+  valor: '1' }];
 export default function TableWallet() {
   return (
     <Box>

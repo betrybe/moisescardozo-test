@@ -5,15 +5,41 @@ import './Style/index.css';
 import './Style/inputSize.css';
 
 export default function FormWallet() {
+  const Api = 'https://economia.awesomeapi.com.br/json/all';
   const [name, setName] = useState([]);
-  const [loadCoin, setLoadCoin] = useState('https://economia.awesomeapi.com.br/json/all');
+  const [dados, setDados] = useState([]);
+  const [despesas, setDespesas] = useState('');
 
   const getAllCoins = async () => {
-    const res = await fetch(loadCoin);
+    const res = await fetch(Api);
     const data = await res.json();
     const names = Object.getOwnPropertyNames(data);
     setName(names);
+    setDados(data);
+    // console.log(data[names[5]]);
   };
+  // const n = Object(dados.USD)
+  // console.log('code', n.code);
+
+  // for (let i = 0; i < name.length; i++) {
+  //   // const code = dados[name[i]];
+  //   const code = Object(dados[name[i]]);
+  //   console.log(code);
+  // }
+
+  const saveDespesas = (e) => {
+    e.preventDefault();
+    const { valor, moeda, pagamento, tag, descricao } = e.target.elements;
+    setDespesas(
+      [...despesas,
+        { valor: valor.value,
+          moeda: moeda.value,
+          pagamento: pagamento.value,
+          tag: tag.value,
+          descricao: descricao.value }],
+    );
+  };
+  console.log('des', despesas);
 
   useEffect(() => {
     getAllCoins();
@@ -21,7 +47,7 @@ export default function FormWallet() {
 
   return (
     <Box styleProp="formWallet">
-      <form className="formWallet__Menu">
+      <form className="formWallet__Menu" onSubmit={ saveDespesas }>
         <label className="formWallet__Label col-1" htmlFor="valor">
           Valor:
           <input
@@ -84,9 +110,9 @@ export default function FormWallet() {
           />
         </label>
         <Box styleProp="formWalletContainer__Button col-1">
-          <Button styleButtonProp="formWalletButton">
+          <button styleButtonProp="formWalletButton" type="submit">
             Adicionar despesas
-          </Button>
+          </button>
         </Box>
       </form>
     </Box>
