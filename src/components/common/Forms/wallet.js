@@ -7,7 +7,6 @@ import './Style/inputSize.css';
 export default function FormWallet() {
   const Api = 'https://economia.awesomeapi.com.br/json/all';
   const [name, setName] = useState([]);
-  const [dados, setDados] = useState([]);
   const [despesas, setDespesas] = useState('');
 
   const getAllCoins = async () => {
@@ -15,7 +14,6 @@ export default function FormWallet() {
     const data = await res.json();
     const names = Object.getOwnPropertyNames(data);
     setName(names);
-    setDados(data);
     // console.log(data[names[5]]);
   };
   // const n = Object(dados.USD)
@@ -39,7 +37,7 @@ export default function FormWallet() {
           descricao: descricao.value }],
     );
   };
-  console.log('des', despesas);
+  // console.log('des', despesas);
 
   useEffect(() => {
     getAllCoins();

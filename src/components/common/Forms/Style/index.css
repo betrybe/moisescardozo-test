@@ -23,6 +23,8 @@
 }
 .imgLogin{
     margin: 50px;
+    width: 90%;
+    position: relative;
 }
 /* WALLET STYLES */
 .formWallet{

@@ -9,8 +9,9 @@ export default function FormLogin() {
     email: '',
     pass: '',
   });
+  const minPassword = 5;
 
-  const isEmpy = user.email.length === 0 || user.pass.length === 0;
+  const isEmpy = user.email.length === 0 || user.pass.length < minPassword;
 
   function hadleChange(event) {
     const inputName = event.target.getAttribute('name');
@@ -18,7 +19,6 @@ export default function FormLogin() {
       ...user,
       [inputName]: event.target.value,
     });
-    console.log(user);
   }
 
   return (
