@@ -9,7 +9,9 @@ import Routes from './Routes';
 function App() {
   return (
     <Provider store={ store }>
-      <Teste />
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </Provider>
   );
 }

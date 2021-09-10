@@ -3,9 +3,7 @@ const typeAction = {
   userAdd: 'userAdd',
   userRemove: 'userRemove',
 };
-const INIT_STATE = {
-  email: '',
-};
+const INIT_STATE = [{ usuarios: '' }];
 const user = (state = INIT_STATE, action) => {
   //   const { payload, type } = action;
   // switch (action.type) {
@@ -16,11 +14,15 @@ const user = (state = INIT_STATE, action) => {
   // default:
   //   return state;
   const { payload } = action;
-  const { email } = state;
+  // const { usuarios } = state;
   // console.log(state);
   switch (action.type) {
   case typeAction.userAdd:
-    return { ...state, email: [...email, payload] };
+    return [
+      ...state, {
+        ...payload,
+      },
+    ];
   default:
     return state;
   }

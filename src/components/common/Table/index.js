@@ -59,8 +59,8 @@ export default function TableWallet() {
         </tr>
         {DumbData.map((item) => {
           const a = convertido.conver;
-          console.log(a)
-          return(
+          console.log(a);
+          return (
 
             <tr key={ item.descricao }>
               <td>{item.descricao}</td>
