@@ -12,71 +12,63 @@ const tableHeader = [
   'Moeda de conversão',
   'Editar/Excluir',
 ];
-const tableValue = [
-  { desc: '2',
-    tag: '2',
-    pag: '2',
-    valor: '2',
-    coin: '2',
-    cambio: '2',
-    convertido: '2',
-    moedaExt: '2',
-    upDel: '2' },
-];
-const DumbData = [{ descricao: '11',
-  moeda: 'GBP',
-  pagamento: 'Debito',
-  tag: 'Alimentaçao',
-  valor: '1' }];
-export default function TableWallet() {
-  const Api = 'https://economia.awesomeapi.com.br/json/all';
-  const [name, setName] = useState([]);
-  const [dados, setDados] = useState([]);
 
-  const getAllCoins = async () => {
-    const res = await fetch(Api);
-    const data = await res.json();
-    setDados(data);
-  };
+const DumbData = [{ descricao: 'Gasto',
+  tag: 'lazer',
+  pagamento: 'debito',
+  valor: '2,00',
+  code: 'ARS',
+  moeda: 'Peso Argentino',
+  cambio: '0,5',
+  convertido: '1',
+  moeda_base: 'Real Brasileiro',
+  condein: 'BRL' }];
+
+export default function TableWallet() {
+  // const Api = 'https://economia.awesomeapi.com.br/json/all';
+  const [name, setName] = useState([]);
+
   const convertido = async () => {
-    const res = await fetch(`https://economia.awesomeapi.com.br/${DumbData[0].moeda}/`);
+    const res = await fetch(`https://economia.awesomeapi.com.br/${DumbData[0].code}/`);
     const data = await res.json();
     setName(data[0].bid);
-    // return conver;
+    console.log(name);
   };
 
   useEffect(() => {
-    getAllCoins();
     convertido();
   }, []);
   return (
-    <Box>
+    <Box styleProp="">
       <table>
-        <tr>
-          {tableHeader.map((texto) => (
-            <th key={ texto }>{texto}</th>
-          ))}
-        </tr>
-        {DumbData.map((item) => {
-          const a = convertido.conver;
-          console.log(a);
-          return (
-
-            <tr key={ item.descricao }>
-              <td>{item.descricao}</td>
-              <td>{item.tag}</td>
-              <td>{item.pagamento}</td>
-              <td>{item.valor}</td>
-              <td>{item.moeda}</td>
-              <td>{item.cambio}</td>
-              <td>{item.convertido}</td>
-              <td>{item.moedaExt}</td>
-              <td>
-                update /delete
-              </td>
-            </tr>
-          );
-        })}
+        <thead>
+          <tr>
+            {tableHeader.map((texto) => (
+              <th key={ texto }>{texto}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {DumbData.map((item) => {
+            const a = convertido.conver;
+            console.log(a);
+            return (
+              <tr key={ item.descricao }>
+                <td>{item.descricao}</td>
+                <td>{item.tag}</td>
+                <td>{item.pagamento}</td>
+                <td>{item.valor}</td>
+                <td>{item.moeda}</td>
+                <td>{item.cambio}</td>
+                <td>{item.convertido}</td>
+                <td>{item.moeda_base}</td>
+                <td>
+                  update /delete
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </Box>
   );

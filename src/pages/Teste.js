@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import actions from '../actions';
@@ -34,7 +37,7 @@ const Teste = () => {
       {/* {[...user].map((e) => (<p>{e}</p>))} */}
       {a.map((e) => (
         // console.log('sad', e.usuario)
-        <p>{e.usuario}</p>
+        <p>{ e.usuario }</p>
       ))}
       <input onChange={ handleChange } />
       <ul>

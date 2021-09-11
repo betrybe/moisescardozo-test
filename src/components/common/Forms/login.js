@@ -43,6 +43,7 @@ export default function FormLogin() {
             id="email"
             placeholder="Exemplo@exemplo.com"
             onChange={ hadleChange }
+            data-testid="email-input"
           />
         </label>
         <label className="labelLogin" htmlFor="pass">
@@ -53,6 +54,7 @@ export default function FormLogin() {
             id="pass"
             placeholder="Senha"
             onChange={ hadleChange }
+            data-testid="password-input"
           />
         </label>
         <Button styleButtonProp="button" onClick={ handleSubmit }>

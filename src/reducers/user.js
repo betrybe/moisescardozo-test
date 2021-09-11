@@ -3,6 +3,7 @@ const typeAction = {
   userAdd: 'userAdd',
   userRemove: 'userRemove',
 };
+// CRIAR LOGIA PARA NAO FICAR COM 1 OBJ VAZIO
 const INIT_STATE = [{ usuarios: '' }];
 const user = (state = INIT_STATE, action) => {
   //   const { payload, type } = action;

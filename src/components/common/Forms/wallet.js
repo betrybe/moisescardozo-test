@@ -1,47 +1,62 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Box from '../../layout/Box';
 import Button from '../Button';
 import './Style/index.css';
 import './Style/inputSize.css';
+import actions from '../../../actions';
 
 export default function FormWallet() {
   const Api = 'https://economia.awesomeapi.com.br/json/all';
   const [name, setName] = useState([]);
   const [despesas, setDespesas] = useState('');
-
+  const [coinInfo, setCoinInfo] = useState(0);
+  // Storage do Wallet
+  const dispatch = useDispatch();
+  // pegando somente o codigo das moedas
   const getAllCoins = async () => {
     const res = await fetch(Api);
     const data = await res.json();
     const names = Object.getOwnPropertyNames(data);
     setName(names);
-    // console.log(data[names[5]]);
+    setCoinInfo(data);
   };
   // const n = Object(dados.USD)
-  // console.log('code', n.code);
 
   // for (let i = 0; i < name.length; i++) {
   //   // const code = dados[name[i]];
   //   const code = Object(dados[name[i]]);
-  //   console.log(code);
   // }
 
+  function setStorage() {
+    const storage = despesas;
+    dispatch(actions.walletAdd(storage));
+  }
   const saveDespesas = (e) => {
     e.preventDefault();
     const { valor, moeda, pagamento, tag, descricao } = e.target.elements;
+    const moedaInfo = coinInfo[moeda.value];
+    const valorConvertido = moedaInfo.ask * valor.value;
+    const coinNames = moedaInfo.name.split('/');
     setDespesas(
-      [...despesas,
-        { valor: valor.value,
-          moeda: moeda.value,
-          pagamento: pagamento.value,
-          tag: tag.value,
-          descricao: descricao.value }],
+      { descricao: descricao.value,
+        tag: tag.value,
+        pagamento: pagamento.value,
+        valor: valor.value,
+        code: moedaInfo.code,
+        moeda: coinNames[0],
+        cambio: moedaInfo.ask,
+        convertido: valorConvertido,
+        moeda_base: coinNames[1],
+        code_base: moedaInfo.codein },
     );
+    if (despesas.length !== 0) {
+      setStorage();
+    }
   };
-  // console.log('des', despesas);
-
   useEffect(() => {
     getAllCoins();
-  }, []);
+  }, [setName]);
 
   return (
     <Box styleProp="formWallet">
@@ -108,9 +123,9 @@ export default function FormWallet() {
           />
         </label>
         <Box styleProp="formWalletContainer__Button col-1">
-          <button styleButtonProp="formWalletButton" type="submit">
+          <Button styleButtonProp="formWalletButton" type="submit">
             Adicionar despesas
-          </button>
+          </Button>
         </Box>
       </form>
     </Box>
