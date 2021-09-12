@@ -1,0 +1,14 @@
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    line-height: 2rem;
+    text-align: center;
+}
+.table_header{
+    background-color: #000;
+    color:#FFF;
+    font-size: 1.1rem;
+}
+.table_body{
+    line-height: 2rem;
+}

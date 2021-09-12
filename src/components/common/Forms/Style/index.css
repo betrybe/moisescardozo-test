@@ -57,6 +57,7 @@
     border: none;
     border-radius: 4px;
 }
+
 .formSelect{
     padding: 8px;
     font-size: 20px;
@@ -74,4 +75,21 @@
 .formWalletContainer__Button{
     position: relative;
     height: auto;
+}
+
+/* esconder setas de input do tipo numero */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Validaaçõ */
+.input_valid{
+    color:red
 }

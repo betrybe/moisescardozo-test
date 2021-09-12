@@ -10,7 +10,7 @@ class Wallet extends React.Component {
         <Header />
         <FormWallet />
         <TableWallet />
-        TrybeWallet
+        * Valores de cambio são arredondados em 3 casas decimais
       </>
     );
   }

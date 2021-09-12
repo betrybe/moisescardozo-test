@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../../../actions';
 import Box from '../../layout/Box';
+import Button from '../Button';
+import './Style/index.css';
 
 const tableHeader = [
   'Descrição',
@@ -14,47 +17,35 @@ const tableHeader = [
   'Editar/Excluir',
 ];
 
-const DumbData = [{ id: '0',
-  descricao: 'descricao.value',
-  tag: 'tag.value',
-  pagamento: 'pagamento.value',
-  valor: 'valor.value',
-  code: 'moedaInfo.code',
-  moeda: 'coinNames[0]',
-  cambio: 'moedaInfo.ask',
-  convertido: 'valorConvertido',
-  moeda_base: 'coinNames[1]',
-  code_base: 'moedaInfo.codein' }];
-
 export default function TableWallet() {
   // const Api = 'https://economia.awesomeapi.com.br/json/all';
-  const [name, setName] = useState();
   const walletStorage = useSelector((state) => state.wallet);
-  // console.log('store wallet',walletStorage)
+  const [name, setName] = useState([walletStorage]);
+  const dispatch = useDispatch();
 
-  // const convertido = async () => {
-  //   const res = await fetch(`https://economia.awesomeapi.com.br/${DumbData[0].code}/`);
-  //   const data = await res.json();
-  //   setName(data[0].bid);
-  //   console.log(name);
-  // };
+  function handleRemove(itemId) {
+    const newList = name.filter((item) => item.id !== itemId);
+    setName(newList);
+    dispatch(actions.walletRemove(newList));
+    console.log(name);
+  }
   useEffect(() => {
-    setName(walletStorage)
+    setName(walletStorage);
   }, [walletStorage]);
-  console.log('name',name)
+
   return (
     <Box styleProp="">
-      <table>
-        <thead>
-          <tr>
+      <table className="table">
+        <thead className="table_header">
+          <tr className="">
             {tableHeader.map((texto) => (
               <th key={ texto }>{texto}</th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table_body">
           {walletStorage.map((item) => (
-            <tr key={ item.id }>
+            <tr key={ item.id } className="table_body-row">
               <td>{item.descricao}</td>
               <td>{item.tag}</td>
               <td>{item.pagamento}</td>
@@ -64,7 +55,7 @@ export default function TableWallet() {
               <td>{item.convertido}</td>
               <td>{item.moeda_base}</td>
               <td>
-                update /delete
+                <Button onClick={ () => handleRemove(item.id) }>Deletar</Button>
               </td>
             </tr>
           ))}

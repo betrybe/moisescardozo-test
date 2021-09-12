@@ -17,6 +17,8 @@ export default function FormLogin() {
   const minPassword = 5;
 
   const isEmpy = user.email.length === 0 || user.pass.length < minPassword;
+  const notEmail = user.email.search('@') == -1;
+  const invalid = isEmpy || notEmail;
 
   function hadleChange(event) {
     const inputName = event.target.getAttribute('name');
@@ -42,6 +44,7 @@ export default function FormLogin() {
             placeholder="Exemplo@exemplo.com"
             onChange={ hadleChange }
             data-testid="email-input"
+            x-moz-errormessage="Ops, ta faltando preencher esse campo."
           />
         </label>
         <label className="labelLogin" htmlFor="pass">
@@ -55,10 +58,12 @@ export default function FormLogin() {
             data-testid="password-input"
           />
         </label>
+        <span className="input_valid">{isEmpy ? 'Prencha os campos acima' : ''}</span>
+        <span className="input_valid">{notEmail ? 'O campo Email está sem @' : ''}</span>
         <Button styleButtonProp="button" onClick={ handleSubmit }>
           <Link
-            className={ `buttonLink ${isEmpy ? 'disable' : 'enable'}` }
-            to={ isEmpy ? '/' : '/wallet' }
+            className={ `buttonLink ${invalid ? 'disable' : 'enable'}` }
+            to={ invalid ? '/' : '/wallet' }
           >
             Entrar
           </Link>

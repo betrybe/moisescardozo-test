@@ -22,20 +22,22 @@ export default function FormWallet() {
     setName(names);
     setCoinInfo(data);
   };
-  // const n = Object(dados.USD)
-
-  // for (let i = 0; i < name.length; i++) {
-  //   // const code = dados[name[i]];
-  //   const code = Object(dados[name[i]]);
-  // }
 
   const saveDespesas = (e) => {
     e.preventDefault();
     const { valor, moeda, pagamento, tag, descricao } = e.target.elements;
+
+    if (valor.value.length === 0) {
+      // eslint-disable-next-line no-alert
+      return alert('digite um valor válido');
+    }
+
     const moedaInfo = coinInfo[moeda.value];
     const valorConvertido = moedaInfo.ask * valor.value;
     const coinNames = moedaInfo.name.split('/');
-    const id = walletStorage.length;
+    // pengando o ultimo id disponivel e para criar um novo id
+    const lastId = walletStorage[walletStorage.length - 1].id;
+    const id = lastId + 1;
     dispatch(actions.walletAdd({ id,
       descricao: descricao.value,
       tag: tag.value,
@@ -43,22 +45,26 @@ export default function FormWallet() {
       valor: valor.value,
       code: moedaInfo.code,
       moeda: coinNames[0],
-      cambio: moedaInfo.ask,
-      convertido: valorConvertido,
+      cambio: parseFloat(moedaInfo.ask).toFixed(2),
+      convertido: valorConvertido.toFixed(2),
       moeda_base: coinNames[1],
       code_base: moedaInfo.codein }));
   };
   useEffect(() => {
     getAllCoins();
   }, []);
+
   return (
     <Box styleProp="formWallet">
       <form className="formWallet__Menu" onSubmit={ saveDespesas }>
         <label className="formWallet__Label col-1" htmlFor="valor">
           Valor:
           <input
-            className="formWallet__Input col-5"
-            type="numeric"
+            // className="formWallet__Input col-5 "
+            className="formWallet__Input col-5 "
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]"
             name="valor"
             id="valor"
           />
