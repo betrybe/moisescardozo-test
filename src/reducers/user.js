@@ -16,7 +16,6 @@ const user = (state = INIT_STATE, action) => {
   //   return state;
   const { payload } = action;
   // const { usuarios } = state;
-  // console.log(state);
   switch (action.type) {
   case typeAction.userAdd:
     return [

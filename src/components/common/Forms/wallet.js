@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Box from '../../layout/Box';
 import Button from '../Button';
 import './Style/index.css';
@@ -9,8 +9,9 @@ import actions from '../../../actions';
 export default function FormWallet() {
   const Api = 'https://economia.awesomeapi.com.br/json/all';
   const [name, setName] = useState([]);
-  const [despesas, setDespesas] = useState('');
   const [coinInfo, setCoinInfo] = useState(0);
+  // pegando tamanho do storageWallet usado pra criar a ID
+  const walletStorage = useSelector((state) => state.wallet);
   // Storage do Wallet
   const dispatch = useDispatch();
   // pegando somente o codigo das moedas
@@ -28,36 +29,28 @@ export default function FormWallet() {
   //   const code = Object(dados[name[i]]);
   // }
 
-  function setStorage() {
-    const storage = despesas;
-    dispatch(actions.walletAdd(storage));
-  }
   const saveDespesas = (e) => {
     e.preventDefault();
     const { valor, moeda, pagamento, tag, descricao } = e.target.elements;
     const moedaInfo = coinInfo[moeda.value];
     const valorConvertido = moedaInfo.ask * valor.value;
     const coinNames = moedaInfo.name.split('/');
-    setDespesas(
-      { descricao: descricao.value,
-        tag: tag.value,
-        pagamento: pagamento.value,
-        valor: valor.value,
-        code: moedaInfo.code,
-        moeda: coinNames[0],
-        cambio: moedaInfo.ask,
-        convertido: valorConvertido,
-        moeda_base: coinNames[1],
-        code_base: moedaInfo.codein },
-    );
-    if (despesas.length !== 0) {
-      setStorage();
-    }
+    const id = walletStorage.length;
+    dispatch(actions.walletAdd({ id,
+      descricao: descricao.value,
+      tag: tag.value,
+      pagamento: pagamento.value,
+      valor: valor.value,
+      code: moedaInfo.code,
+      moeda: coinNames[0],
+      cambio: moedaInfo.ask,
+      convertido: valorConvertido,
+      moeda_base: coinNames[1],
+      code_base: moedaInfo.codein }));
   };
   useEffect(() => {
     getAllCoins();
-  }, [setName]);
-
+  }, []);
   return (
     <Box styleProp="formWallet">
       <form className="formWallet__Menu" onSubmit={ saveDespesas }>
@@ -123,7 +116,7 @@ export default function FormWallet() {
           />
         </label>
         <Box styleProp="formWalletContainer__Button col-1">
-          <Button styleButtonProp="formWalletButton" type="submit">
+          <Button styleButtonProp="formWalletButton" btnType="submit">
             Adicionar despesas
           </Button>
         </Box>

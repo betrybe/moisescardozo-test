@@ -26,15 +26,13 @@ export default function FormLogin() {
     });
   }
   function handleSubmit() {
-    console.log('user', user);
     const storage = user;
     dispatch(actions.userAdd(storage));
-    console.log('store', userStore);
   }
   return (
     <Box styleProp="LoginBackground LoginWith">
       <img className="imgLogin" src="/img/trybeLogo.png" alt="logo" />
-      <form className="formLogin" onSubmit={ handleSubmit }>
+      <form className="formLogin">
         <label className="labelLogin" htmlFor="email">
           <input
             className="inputLogin"
@@ -65,9 +63,9 @@ export default function FormLogin() {
             Entrar
           </Link>
         </Button>
-        <button type="button" onClick={ handleSubmit }>
+        {/* <button type="button" onClick={ handleSubmit }>
           enter
-        </button>
+        </button> */}
       </form>
     </Box>
   );
