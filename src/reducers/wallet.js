@@ -25,7 +25,6 @@ const wallet = (state = INIT_STATE, action) => {
       },
     ];
   case typeAction.walletRemove:
-    console.log('state', state);
     return payload;
     // return {
     //   ...state,

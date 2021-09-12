@@ -8,7 +8,6 @@ import actions from '../../../actions';
 
 export default function FormLogin() {
   const dispatch = useDispatch();
-  const userStore = useSelector((state) => state.user);
   const [user, setUser] = useState({
     email: '',
     pass: '',
@@ -17,7 +16,7 @@ export default function FormLogin() {
   const minPassword = 5;
 
   const isEmpy = user.email.length === 0 || user.pass.length < minPassword;
-  const notEmail = user.email.search('@') == -1;
+  const notEmail = user.email.search('@') === -1;
   const invalid = isEmpy || notEmail;
 
   function hadleChange(event) {

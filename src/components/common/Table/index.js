@@ -27,7 +27,6 @@ export default function TableWallet() {
     const newList = name.filter((item) => item.id !== itemId);
     setName(newList);
     dispatch(actions.walletRemove(newList));
-    console.log(name);
   }
   useEffect(() => {
     setName(walletStorage);
@@ -49,10 +48,19 @@ export default function TableWallet() {
               <td>{item.descricao}</td>
               <td>{item.tag}</td>
               <td>{item.pagamento}</td>
-              <td>{item.valor}</td>
+              <td>
+                $
+                {item.valor}
+              </td>
               <td>{item.moeda}</td>
-              <td>{item.cambio}</td>
-              <td>{item.convertido}</td>
+              <td>
+                R$
+                {item.cambio}
+              </td>
+              <td>
+                R$
+                {item.convertido}
+              </td>
               <td>{item.moeda_base}</td>
               <td>
                 <Button
