@@ -14,7 +14,7 @@ const tableHeader = [
   'Câmbio utilizado',
   'Valor Convertido',
   'Moeda de conversão',
-  'Editar/Excluir',
+  'Excluir',
 ];
 
 export default function TableWallet() {
@@ -55,7 +55,12 @@ export default function TableWallet() {
               <td>{item.convertido}</td>
               <td>{item.moeda_base}</td>
               <td>
-                <Button onClick={ () => handleRemove(item.id) }>Deletar</Button>
+                <Button
+                  styleButtonProp="DelButton"
+                  onClick={ () => handleRemove(item.id) }
+                >
+                  Deletar
+                </Button>
               </td>
             </tr>
           ))}
