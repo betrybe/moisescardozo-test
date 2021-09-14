@@ -8,13 +8,13 @@ import './Style/index.css';
 const tableHeader = [
   'Descrição',
   'Tag',
-  'Método de Pagamento',
+  'Método de pagamento',
   'Valor',
   'Moeda',
   'Câmbio utilizado',
-  'Valor Convertido',
+  'Valor convertido',
   'Moeda de conversão',
-  'Excluir',
+  'Editar/Excluir',
 ];
 
 export default function TableWallet() {
@@ -64,6 +64,7 @@ export default function TableWallet() {
               <td>{item.moeda_base}</td>
               <td>
                 <Button
+                  data-testid="delete-btn"
                   styleButtonProp="DelButton"
                   onClick={ () => handleRemove(item.id) }
                 >

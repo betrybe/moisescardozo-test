@@ -19,12 +19,13 @@ export default function Header() {
       </Box>
       <Box styleProp="headerUser">
         {/* <p>{userStore[1].email}</p> */}
-        <p>{headerUserName}</p>
-        <p>
+        <p data-testid="email-field">{headerUserName}</p>
+        <p data-testid="total-field">
           despesas:
           R$
           {despesaTotal.toFixed(2)}
         </p>
+        <p data-testid="header-currency-field">BRL</p>
       </Box>
     </Box>
   );

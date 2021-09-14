@@ -27,11 +27,6 @@ export default function FormWallet() {
     e.preventDefault();
     const { valor, moeda, pagamento, tag, descricao } = e.target.elements;
 
-    if (valor.value.length === 0) {
-      // eslint-disable-next-line no-alert
-      return alert('digite um valor válido');
-    }
-
     const moedaInfo = coinInfo[moeda.value];
     const valorConvertido = moedaInfo.ask * valor.value;
     const coinNames = moedaInfo.name.split('/');
@@ -67,6 +62,7 @@ export default function FormWallet() {
             pattern="[0-9]"
             name="valor"
             id="valor"
+            required
           />
         </label>
         <label className="formWallet__Label col-2" htmlFor="moeda">
@@ -79,10 +75,6 @@ export default function FormWallet() {
             {name.map((nameOpt) => (
               <option key={ nameOpt } value={ nameOpt }>{nameOpt}</option>
             ))}
-            {/* <option value="USD">USD</option>
-            <option value="BRL">BRL</option>
-            <option value="CAD">CAD</option>
-            <option value="UER">UER</option> */}
 
           </select>
         </label>
@@ -94,8 +86,8 @@ export default function FormWallet() {
             id="pagamento"
           >
             <option value="Dinheiro">Dinheiro</option>
-            <option value="Credito">Cartão de credito</option>
-            <option value="Debito">Cartão de debito</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label className="formWallet__Label col-1" htmlFor="tag">
@@ -105,11 +97,11 @@ export default function FormWallet() {
             name="tag"
             id="tag"
           >
-            <option value="Lazer">Lazer</option>
-            <option value="Alimentaçao">Alimentação</option>
+            <option value="Lazer">lazer</option>
+            <option value="Alimentação">Alimentação</option>
             <option value="Trabalho">Trabalho</option>
             <option value="Transporte">Transporte</option>
-            <option value="Saude">Saúde</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
         <label className="formWallet__Label col-3" htmlFor="descricao">
@@ -119,11 +111,12 @@ export default function FormWallet() {
             type="text"
             name="descricao"
             id="descricao"
+            required
           />
         </label>
         <Box styleProp="formWalletContainer__Button col-1">
-          <Button styleButtonProp="formWalletButton" btnType="submit">
-            Adicionar despesas
+          <Button styleButtonProp="formWalletButton" btnType={ false }>
+            Adicionar despesa
           </Button>
         </Box>
       </form>

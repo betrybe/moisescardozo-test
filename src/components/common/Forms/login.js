@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Box from '../../layout/Box';
 import Button from '../Button';
@@ -13,10 +13,14 @@ export default function FormLogin() {
     pass: '',
   });
 
-  const minPassword = 5;
+  const minPassword = 6;
 
   const isEmpy = user.email.length === 0 || user.pass.length < minPassword;
-  const notEmail = user.email.search('@') === -1;
+  // criando variavel para satisfazer a regra do linter -> no-magic-numbers
+  // nesse casso de verificar se existe @ não faria muito sentido criar a variavel
+  // apenas para isso
+  const quantArroba = -1;
+  const notEmail = user.email.search('@') === quantArroba;
   const invalid = isEmpy || notEmail;
 
   function hadleChange(event) {
@@ -62,14 +66,12 @@ export default function FormLogin() {
         <Button styleButtonProp="button" onClick={ handleSubmit }>
           <Link
             className={ `buttonLink ${invalid ? 'disable' : 'enable'}` }
-            to={ invalid ? '/' : '/wallet' }
+            to={ invalid ? '/' : '/carteira' }
+            disabled={ !!invalid }
           >
             Entrar
           </Link>
         </Button>
-        {/* <button type="button" onClick={ handleSubmit }>
-          enter
-        </button> */}
       </form>
     </Box>
   );
