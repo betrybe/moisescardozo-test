@@ -1,0 +1,22 @@
+.button{
+    border: none;
+    width: 100%;
+    line-height: 2;
+    padding: 0px;
+}
+.buttonLink{
+    background-color: #2da44e;
+    display: block;
+    color: #fff;
+    font-size: 24px;
+    line-height: 2;
+    text-decoration: none;
+}
+.disable{
+    cursor: not-allowed;
+    opacity: 0.2;
+}
+.enable{
+    cursor: pointer;
+    opacity: 1;
+}

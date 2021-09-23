@@ -1,0 +1,95 @@
+.formLogin{
+    width: 90%;
+    display: flex;
+    flex:0.5;
+    flex-direction: column;
+    margin:10px auto 10px auto;
+    padding: 10px;
+    margin: 40px
+}
+.labelLogin{
+    /* width: 100%; */
+}
+.inputLogin{
+    font-size: 24px;
+    width: 100%;
+    border: none;
+    padding: 0px;
+    line-height: 2;
+    margin-bottom: 10px;
+    border: solid 1px;
+    border-radius: 8px;
+    text-align: center;
+}
+.imgLogin{
+    margin: 50px;
+    width: 90%;
+    position: relative;
+}
+/* WALLET STYLES */
+.formWallet{
+    background-color: rgba(0,0,0,0.8);
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formWallet__Menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    color:#FFF;
+    font-size: 20px;
+}
+.formWallet__Label{
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+}
+.formWallet__Input{
+    position: relative;
+    /* width: 50%; */
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.formSelect{
+    padding: 8px;
+    font-size: 20px;
+}
+.formWalletButton{
+    position: relative;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #FFF;
+    border:none;
+    padding: 15px;
+    border-radius: 8px;
+    background-color:#54aeff;
+}
+.formWalletContainer__Button{
+    position: relative;
+    height: auto;
+}
+
+/* esconder setas de input do tipo numero */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Validaaçõ */
+.input_valid{
+    color:red
+}
